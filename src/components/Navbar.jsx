@@ -122,30 +122,43 @@ const Navbar = () => {
       <dialog id="my_modal_3" className="modal">
         <div className="modal-box max-w-[600px] bg-white text-black">
           <h3 className="font-bold text-lg text-center mb-4">Create Job Opening</h3>
-          <form className="grid grid-cols-1 gap-4 text-sm">
-            <input
-              type="text"
-              placeholder="Job Title"
-              value={jobData.title}
-              onChange={(e) => setJobData({ ...jobData, title: e.target.value })}
-              className="border rounded p-2 bg-white text-black"
-            />
-            <input
-              type="text"
-              placeholder="Company Name"
-              value={jobData.company}
-              onChange={(e) => setJobData({ ...jobData, company: e.target.value })}
-              className="border rounded p-2 bg-white text-black"
-            />
-            <input
-              type="text"
-              placeholder="Location"
-              value={jobData.location}
-              onChange={(e) => setJobData({ ...jobData, location: e.target.value })}
-              className="border rounded p-2 bg-white text-black"
-            />
-            {jobData.location && filteredSuggestions.length > 0 && (
-              <div className="border rounded p-2 bg-white text-black">
+          <form className="grid grid-cols-2 gap-4 text-sm">
+            <div className="flex flex-col">
+              <label className="mb-1 text-black font-medium">Job Title</label>
+              <input
+                type="text"
+                placeholder="Full Stack, Frontend Developer"
+                value={jobData.title}
+                onChange={(e) => setJobData({ ...jobData, title: e.target.value })}
+                className="border rounded p-2 bg-white text-black"
+              />
+            </div>
+          
+            <div className="flex flex-col">
+              <label className="mb-1 text-black font-medium">Company Name</label>
+              <input
+                type="text"
+                placeholder="Amazon, Flipkart"
+                value={jobData.company}
+                onChange={(e) => setJobData({ ...jobData, company: e.target.value })}
+                className="border rounded p-2 bg-white text-black"
+              />
+            </div>
+          
+            
+            <div className="flex flex-col relative">
+              <label className="mb-1 text-black font-medium">Location</label>
+              <input
+                type="text"
+                placeholder="Choose preferred location"
+                value={jobData.location}
+                onChange={(e) => setJobData({ ...jobData, location: e.target.value })}
+                className="border rounded p-2 bg-white text-black"
+              />
+              {jobData.location &&
+            filteredSuggestions.length > 0 &&
+            filteredSuggestions[0].toLowerCase() !== jobData.location.toLowerCase() && (
+              <div className="border rounded p-2 bg-white text-black col-span-2">
                 {filteredSuggestions.map((loc) => (
                   <div
                     key={loc}
@@ -157,45 +170,73 @@ const Navbar = () => {
                 ))}
               </div>
             )}
-            <select
-              value={jobData.job_type}
-              onChange={(e) => setJobData({ ...jobData, job_type: e.target.value })}
-              className="border rounded p-2 bg-white text-black"
-            >
-              <option value="">Select Job Type</option>
-              {types.map((type) => (
-                <option key={type}>{type}</option>
-              ))}
-            </select>
-            <div className="grid grid-cols-2 gap-2">
+          
+          </div>
+          
+            <div className="flex flex-col">
+              <label className="mb-1 text-black font-medium">Job Type</label>
+              <select
+                value={jobData.job_type}
+                onChange={(e) => setJobData({ ...jobData, job_type: e.target.value })}
+                className="border rounded p-2 bg-white text-black"
+              >
+                <option value="">Select Job Type</option>
+                {types.map((type) => (
+                  <option key={type}>{type}</option>
+                ))}
+              </select>
+            </div>
+          
+            
+          <div className="flex flex-col col-span-2">
+            <label className="mb-1 text-black font-medium">Salary Range (Per Month)</label>
+            <div className="grid grid-cols-2 gap-4">
               <input
-                type="text"
-                placeholder="Min Salary"
+                type="number"
+                placeholder="₹ 0"
                 value={jobData.min_salary}
-                onChange={(e) => setJobData({ ...jobData, min_salary: e.target.value })}
+                onChange={(e) =>
+                  setJobData({ ...jobData, min_salary: e.target.value })
+                }
                 className="border rounded p-2 bg-white text-black"
               />
               <input
-                type="text"
-                placeholder="Max Salary"
+                type="number"
+                placeholder="₹ 120000"
                 value={jobData.max_salary}
-                onChange={(e) => setJobData({ ...jobData, max_salary: e.target.value })}
+                onChange={(e) =>
+                  setJobData({ ...jobData, max_salary: e.target.value })
+                }
                 className="border rounded p-2 bg-white text-black"
               />
             </div>
-            <input
-              type="date"
-              value={jobData.deadline}
-              onChange={(e) => setJobData({ ...jobData, deadline: e.target.value })}
-              className="border rounded p-2 bg-white text-black"
-            />
-            <textarea
-              placeholder="Job Description"
-              value={jobData.description}
-              onChange={(e) => setJobData({ ...jobData, description: e.target.value })}
-              className="border rounded p-2 bg-white text-black"
-            />
+          </div>
+          
+          
+            <div className="flex flex-col">
+              <label className="mb-1 text-black font-medium">Application Deadline</label>
+              <input
+                type="date"
+                value={jobData.deadline}
+                onChange={(e) => setJobData({ ...jobData, deadline: e.target.value })}
+                className="border border-gray-400 rounded p-2 bg-gray-200 text-black"
+              />
+            </div>
+          
+            
+            <div className="flex flex-col col-span-2">
+              <label className="mb-1 text-black font-medium">Job Description</label>
+              <textarea
+                placeholder="Describe the job role here..."
+                value={jobData.description}
+                onChange={(e) => setJobData({ ...jobData, description: e.target.value })}
+                className="border rounded p-2 bg-white text-black h-32 resize-none"
+              />
+            </div>
           </form>
+
+
+            
 
           <div className="flex justify-between mt-5 modal-action">
             <form method="dialog">
