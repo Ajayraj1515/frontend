@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
-import PropTypes from "prop-types"; // ✅ Import PropTypes
+import PropTypes from "prop-types";
 
 export const GlobalContext = createContext();
 
@@ -27,7 +27,7 @@ const GlobalProvider = ({ children }) => {
   );
 };
 
-// ✅ Add PropTypes validation
+
 GlobalProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };

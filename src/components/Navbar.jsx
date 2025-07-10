@@ -88,7 +88,6 @@ const Navbar = () => {
 
   return (
     <div>
-      {/* Navbar */}
       <div className="fixed top-0 left-0 bg-white w-full shadow-md z-[100]">
         <div className="flex justify-center p-3 py-4">
           <div className="flex gap-5 items-center px-5 py-3 rounded-full font-[600] nav text-[#303030]">
@@ -120,8 +119,6 @@ const Navbar = () => {
       </div>
 
       <div className="lg:h-[160px] md:h-[200px] h-[270px] w-full" />
-
-      {/* Modal */}
       <dialog id="my_modal_3" className="modal">
         <div className="modal-box max-w-[600px] bg-white text-black">
           <h3 className="font-bold text-lg text-center mb-4">Create Job Opening</h3>

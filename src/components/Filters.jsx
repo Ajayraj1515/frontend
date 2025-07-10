@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import locationData from "../data/locations.json";
 import RangeSlider from "react-range-slider-input";
 import "react-range-slider-input/dist/style.css";
-import { useGlobalContext } from "../context/GlobalProvider"; // ✅ Corrected typo in filename
+import { useGlobalContext } from "../context/GlobalProvider";
 
 const Filters = () => {
   const { filters, setFilters } = useGlobalContext();
@@ -25,15 +25,14 @@ const Filters = () => {
       min_salary: Math.round(value[0]) + 50,
       max_salary: Math.round(value[1]) + 50,
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
+
 
   return (
     <div>
       <div className="grid lg:grid-cols-4 md:grid-cols-2 divide-x-2 pt-1 pb-4">
-        {/* Search */}
         <div className="p-2 flex gap-5 items-center justify-center">
-          <img src="/search.svg" width="16" height="16" alt="search" className="w-4" />
+          <img src= "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCVfdZIxHEhsapk-0uE1t6ZXrzv-hA9AYo4w&s" width="30" height="30" alt="search" className="w-4" />
           <input
             type="text"
             name="search"
@@ -41,15 +40,13 @@ const Filters = () => {
               setFilters({ ...filters, search: e.target.value })
             }
             placeholder="Search By Job Title, Role"
-            className="placeholder-gray-500 focus:outline-none w-[200px]"
+            className="placeholder-black text-black bg-white focus:outline-none w-[200px]"
           />
         </div>
-
-        {/* Location */}
         <div className="flex justify-center">
           <div className="">
             <div className="p-2 flex gap-5 items-center justify-center">
-              <img src="/location.svg" width="16" height="16" alt="location" className="w-4" />
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS15O9np9zq-CkgYZgefHezTUV9R53wrRAvvw&s" width="30" height="30" alt="location" className="w-4" />
               <input
                 type="text"
                 name="location"
@@ -59,9 +56,9 @@ const Filters = () => {
                   setActive(true);
                 }}
                 placeholder="Preferred Location"
-                className="placeholder-gray-500 focus:outline-none max-w-[200px]"
+                className="placeholder-black text-black bg-white focus:outline-none max-w-[200px]"
               />
-              <img src="/downArrow.svg" width="16" height="16" alt="arrow" className="w-3" />
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTz3UKbLSO4gL_oIqtbvlPvRAouObY9GZNIj8kgpv3YC0ePWyQxTocfC-RlgiadnqjRTTI&usqp=CAU" width="30" height="30" alt="arrow" className="w-4" />
             </div>
             <div className="relative">
               <div className="absolute top-0 left-0 bg-white w-full">
@@ -70,7 +67,7 @@ const Filters = () => {
                     {filteredSuggestions.map((item) => (
                       <div
                         key={item}
-                        className="flex items-center justify-between p-2 cursor-pointer hover:bg-[#BCBCBC] rounded-lg"
+                        className="flex items-center justify-between p-2 cursor-pointer hover:bg-[#BCBCBC] rounded-lg text-black"
                         onClick={() => {
                           setFilters({ ...filters, location: item });
                           setActive(false);
@@ -86,23 +83,20 @@ const Filters = () => {
           </div>
         </div>
 
-        {/* Job Type */}
         <div className="">
           <div className="p-2 flex gap-5 cursor-default items-center justify-center relative">
             <div>
               <div
                 onClick={() => setIsOpen(true)}
-                className={`flex justify-between w-[250px] items-center ${
-                  filters.job_type ? "text-black" : "text-gray-500"
-                }`}
+                className={`flex justify-between w-[250px] items-center text-black bg-white`}
               >
                 <div className="flex items-center gap-3">
-                  <img src="/person.svg" width="16" height="16" alt="person" className="w-4" />
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPG5UukD31dUxrkL2SnW_SX3zqBX59BCyBfZJeNSJg_kOBQqveL19fJKgewY46RX3j1Sk&usqp=CAU" width="16" height="16" alt="person" className="w-4" />
                   <h1 className="w-full">
                     {filters.job_type || "Job Type"}
                   </h1>
                 </div>
-                <img src="/downArrow.svg" width="16" height="16" alt="arrow" className="w-3" />
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTz3UKbLSO4gL_oIqtbvlPvRAouObY9GZNIj8kgpv3YC0ePWyQxTocfC-RlgiadnqjRTTI&usqp=CAU" width="30" height="30" alt="arrow" className="w-4" />
               </div>
 
               <div className={isOpen ? `relative w-full z-[100]` : `hidden`}>
@@ -117,7 +111,7 @@ const Filters = () => {
                         setFilters({ ...filters, job_type: type });
                         setIsOpen(false);
                       }}
-                      className="px-2 py-1 rounded-md hover:bg-gray-200 duration-200"
+                      className="px-2 py-1 rounded-md hover:bg-gray-200 duration-200 text-black"
                     >
                       {type}
                     </p>
@@ -128,12 +122,13 @@ const Filters = () => {
           </div>
         </div>
 
-        {/* Salary Range */}
         <div className="flex justify-center">
           <div>
             <div className="flex justify-between w-[250px]">
-              <h1>Salary Per Month</h1>
-              <h1>{filters.min_salary}k - {filters.max_salary}k</h1>
+              <h1 className="text-black">Salary Per Month</h1>
+              <h1 className="text-black">
+                {filters.min_salary}k - {filters.max_salary}k
+              </h1>
             </div>
             <div className="pt-2">
               <RangeSlider

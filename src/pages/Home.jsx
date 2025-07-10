@@ -1,11 +1,10 @@
-// src/pages/Home.js
 import React from 'react';
 import JobCard from "../components/JobCard";
 import Loader from "../components/Loader";
 import axiosInstance from "../utils/axiosInstance";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { useGlobalContext } from "../context/GlobalProvider"; // adjust path as needed
+import { useGlobalContext } from "../context/GlobalProvider";
 
 export default function Home() {
   const { filters, jobs, setJobs } = useGlobalContext();
@@ -41,12 +40,12 @@ export default function Home() {
       ) : (
         <div className="flex justify-center">
           <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-5">
-            {jobs &&
-              jobs.map((job) => (
-                <div key={job._id}>
-                  <JobCard job={job} />
-                </div>
-              ))}
+            {jobs.map((job) => (
+              <div key={job._id || job.title}> 
+                <JobCard job={job} />
+              </div>
+            ))}
+
           </div>
         </div>
       )}
