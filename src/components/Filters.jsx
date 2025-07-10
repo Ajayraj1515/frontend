@@ -19,20 +19,38 @@ const Filters = () => {
     )
     .slice(0, 5);
 
-  useEffect(() => {
+useEffect(() => {
+  const updatedFilters = {
+    min_salary: Math.round(value[0]) + 50,
+    max_salary: Math.round(value[1]) + 50,
+  };
+
+  const hasChanged =
+    filters.min_salary !== updatedFilters.min_salary ||
+    filters.max_salary !== updatedFilters.max_salary;
+
+  if (hasChanged) {
     setFilters({
       ...filters,
-      min_salary: Math.round(value[0]) + 50,
-      max_salary: Math.round(value[1]) + 50,
+      ...updatedFilters,
     });
-  }, [value]);
+  }
+// eslint-disable-next-line react-hooks/exhaustive-deps
+}, [value]);
+
 
 
   return (
     <div>
       <div className="grid lg:grid-cols-4 md:grid-cols-2 divide-x-2 pt-1 pb-4">
         <div className="p-2 flex gap-5 items-center justify-center">
-          <img src= "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCVfdZIxHEhsapk-0uE1t6ZXrzv-hA9AYo4w&s" width="30" height="30" alt="search" className="w-4" />
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCVfdZIxHEhsapk-0uE1t6ZXrzv-hA9AYo4w&s"
+            width="30"
+            height="30"
+            alt="search"
+            className="w-4"
+          />
           <input
             type="text"
             name="search"
@@ -43,10 +61,17 @@ const Filters = () => {
             className="placeholder-black text-black bg-white focus:outline-none w-[200px]"
           />
         </div>
+
         <div className="flex justify-center">
-          <div className="">
+          <div>
             <div className="p-2 flex gap-5 items-center justify-center">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS15O9np9zq-CkgYZgefHezTUV9R53wrRAvvw&s" width="30" height="30" alt="location" className="w-4" />
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS15O9np9zq-CkgYZgefHezTUV9R53wrRAvvw&s"
+                width="30"
+                height="30"
+                alt="location"
+                className="w-4"
+              />
               <input
                 type="text"
                 name="location"
@@ -58,45 +83,63 @@ const Filters = () => {
                 placeholder="Preferred Location"
                 className="placeholder-black text-black bg-white focus:outline-none max-w-[200px]"
               />
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTz3UKbLSO4gL_oIqtbvlPvRAouObY9GZNIj8kgpv3YC0ePWyQxTocfC-RlgiadnqjRTTI&usqp=CAU" width="30" height="30" alt="arrow" className="w-4" />
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTz3UKbLSO4gL_oIqtbvlPvRAouObY9GZNIj8kgpv3YC0ePWyQxTocfC-RlgiadnqjRTTI&usqp=CAU"
+                width="30"
+                height="30"
+                alt="arrow"
+                className="w-4"
+              />
             </div>
             <div className="relative">
               <div className="absolute top-0 left-0 bg-white w-full">
-                {filters.location && active && filteredSuggestions.length > 0 && (
-                  <div className="no-scrollbar border rounded-xl">
-                    {filteredSuggestions.map((item) => (
-                      <div
-                        key={item}
-                        className="flex items-center justify-between p-2 cursor-pointer hover:bg-[#BCBCBC] rounded-lg text-black"
-                        onClick={() => {
-                          setFilters({ ...filters, location: item });
-                          setActive(false);
-                        }}
-                      >
-                        {item}
-                      </div>
-                    ))}
-                  </div>
-                )}
+                {filters.location &&
+                  active &&
+                  filteredSuggestions.length > 0 && (
+                    <div className="no-scrollbar border rounded-xl">
+                      {filteredSuggestions.map((item) => (
+                        <div
+                          key={item}
+                          className="flex items-center justify-between p-2 cursor-pointer hover:bg-[#BCBCBC] rounded-lg text-black"
+                          onClick={() => {
+                            setFilters({ ...filters, location: item });
+                            setActive(false);
+                          }}
+                        >
+                          {item}
+                        </div>
+                      ))}
+                    </div>
+                  )}
               </div>
             </div>
           </div>
         </div>
 
-        <div className="">
+        <div>
           <div className="p-2 flex gap-5 cursor-default items-center justify-center relative">
             <div>
               <div
                 onClick={() => setIsOpen(true)}
-                className={`flex justify-between w-[250px] items-center text-black bg-white`}
+                className="flex justify-between w-[250px] items-center text-black bg-white"
               >
                 <div className="flex items-center gap-3">
-                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPG5UukD31dUxrkL2SnW_SX3zqBX59BCyBfZJeNSJg_kOBQqveL19fJKgewY46RX3j1Sk&usqp=CAU" width="16" height="16" alt="person" className="w-4" />
-                  <h1 className="w-full">
-                    {filters.job_type || "Job Type"}
-                  </h1>
+                  <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPG5UukD31dUxrkL2SnW_SX3zqBX59BCyBfZJeNSJg_kOBQqveL19fJKgewY46RX3j1Sk&usqp=CAU"
+                    width="16"
+                    height="16"
+                    alt="person"
+                    className="w-4"
+                  />
+                  <h1 className="w-full">{filters.job_type || "Job Type"}</h1>
                 </div>
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTz3UKbLSO4gL_oIqtbvlPvRAouObY9GZNIj8kgpv3YC0ePWyQxTocfC-RlgiadnqjRTTI&usqp=CAU" width="30" height="30" alt="arrow" className="w-4" />
+                <img
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTz3UKbLSO4gL_oIqtbvlPvRAouObY9GZNIj8kgpv3YC0ePWyQxTocfC-RlgiadnqjRTTI&usqp=CAU"
+                  width="30"
+                  height="30"
+                  alt="arrow"
+                  className="w-4"
+                />
               </div>
 
               <div className={isOpen ? `relative w-full z-[100]` : `hidden`}>
