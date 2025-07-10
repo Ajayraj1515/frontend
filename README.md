@@ -1,4 +1,4 @@
-# Job Management Frontend
+# Job Management Full stack (Frontend + Backend)
 
 This is the **Frontend** of the Job Management web application. It allows users to:
 - View job listings
